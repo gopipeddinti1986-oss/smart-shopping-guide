@@ -1,0 +1,128 @@
+import { CategoryItem, LocalShopPreview, ProductPreview } from "@/types";
+
+export const CATEGORIES_DATA: CategoryItem[] = [
+  {
+    id: "electronics",
+    name: "Electronics",
+    iconName: "Laptop",
+    itemCountDesc: "Gadgets, audio & screens",
+    href: "#categories",
+  },
+  {
+    id: "grocery",
+    name: "Grocery & Daily Essentials",
+    iconName: "Apple",
+    itemCountDesc: "Fresh produce & pantry",
+    href: "#categories",
+  },
+  {
+    id: "fashion",
+    name: "Fashion & Apparel",
+    iconName: "Shirt",
+    itemCountDesc: "Clothing, shoes & wear",
+    href: "#categories",
+  },
+  {
+    id: "home-kitchen",
+    name: "Home & Kitchen",
+    iconName: "Home",
+    itemCountDesc: "Cookware & decor",
+    href: "#categories",
+  },
+  {
+    id: "mobile-accessories",
+    name: "Mobile Accessories",
+    iconName: "Smartphone",
+    itemCountDesc: "Cases, chargers & cables",
+    href: "#categories",
+  },
+  {
+    id: "beauty",
+    name: "Beauty & Personal Care",
+    iconName: "Sparkles",
+    itemCountDesc: "Skincare, fragrance & care",
+    href: "#categories",
+  },
+];
+
+export const MOCK_SHOPS_PREVIEW: LocalShopPreview[] = [
+  {
+    id: "shop-1",
+    name: "Apex Digital Electronics",
+    category: "Electronics",
+    neighborhood: "Downtown Market",
+    distance: "0.4 miles away",
+    rating: 4.8,
+    reviewCount: 142,
+    isOpen: true,
+    isVerifiedPlaceholder: true,
+  },
+  {
+    id: "shop-2",
+    name: "Green Valley Organic Market",
+    category: "Grocery",
+    neighborhood: "Westside Promenade",
+    distance: "0.9 miles away",
+    rating: 4.9,
+    reviewCount: 310,
+    isOpen: true,
+    isVerifiedPlaceholder: true,
+  },
+  {
+    id: "shop-3",
+    name: "Modern Living Furniture & Deco",
+    category: "Home & Kitchen",
+    neighborhood: "Arts District",
+    distance: "1.2 miles away",
+    rating: 4.7,
+    reviewCount: 88,
+    isOpen: false,
+    isVerifiedPlaceholder: true,
+  },
+  {
+    id: "shop-4",
+    name: "City Threads Boutique",
+    category: "Fashion",
+    neighborhood: "Central Square",
+    distance: "1.5 miles away",
+    rating: 4.6,
+    reviewCount: 95,
+    isOpen: true,
+    isVerifiedPlaceholder: true,
+  },
+];
+
+export const MOCK_PRODUCTS_PREVIEW: ProductPreview[] = [
+  {
+    id: "prod-1",
+    title: "Wireless Noise-Cancelling Headphones",
+    category: "Electronics",
+    indicativePriceRange: "$149 - $179",
+    availableStoreCount: 4,
+    tags: ["In Stock Nearby", "Price Check Available"],
+  },
+  {
+    id: "prod-2",
+    title: "Artisanal Single-Origin Coffee Beans (1kg)",
+    category: "Grocery",
+    indicativePriceRange: "$18 - $24",
+    availableStoreCount: 3,
+    tags: ["Locally Roasted", "Organic"],
+  },
+  {
+    id: "prod-3",
+    title: "Cast Iron 10-Inch Pre-Seasoned Skillet",
+    category: "Home & Kitchen",
+    indicativePriceRange: "$35 - $45",
+    availableStoreCount: 2,
+    tags: ["Kitchen Essential", "Lifetime Durability"],
+  },
+  {
+    id: "prod-4",
+    title: "Ultra-Fast 65W GaN USB-C Charger Hub",
+    category: "Mobile Accessories",
+    indicativePriceRange: "$29 - $39",
+    availableStoreCount: 6,
+    tags: ["Multi-Port", "High Efficiency"],
+  },
+];
