@@ -1,0 +1,54 @@
+services:
+  postgres:
+    image: postgres:16.4-alpine
+    container_name: ssg_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-smart_shopping_guide}
+      POSTGRES_USER: ${POSTGRES_USER:-smartshopping}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change_me}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infrastructure/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-smartshopping} -d ${POSTGRES_DB:-smart_shopping_guide}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - ssg_network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ssg_backend
+    restart: unless-stopped
+    environment:
+      APP_NAME: ${APP_NAME:-Smart Shopping Guide}
+      APP_ENV: ${APP_ENV:-development}
+      APP_VERSION: ${APP_VERSION:-1.0.0}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:3000}
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-smartshopping}:${POSTGRES_PASSWORD:-change_me}@postgres:5432/${POSTGRES_DB:-smart_shopping_guide}
+      SECRET_KEY: ${SECRET_KEY:-replace_me}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - ssg_network
+
+volumes:
+  postgres_data:
+    name: postgres_data
+
+networks:
+  ssg_network:
+    name: ssg_network
+    driver: bridge
